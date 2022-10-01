@@ -16,7 +16,7 @@ function generatePassword() {
   else {
     var lowerCasePrompt = prompt("Would you like lowercase letters? Please type y or n")
     var lowerCaseSelection = lowerCasePrompt.toUpperCase();
-    if (lowerCaseSelection === "Y" && "YES") {
+    if (lowerCaseSelection === "Y" || lowerCaseSelection === "YES") {
       lowerCaseSelection = true;
       console.log("horray");
       console.log(lowerCaseSelection);
