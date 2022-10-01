@@ -1,5 +1,11 @@
 // Assignment code here
-
+//Password character arrays 
+const lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',]
+const upperCase = lowerCase.map(element => {
+    return element.toUpperCase();
+});
+const numericals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',]
+const specialChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')',]
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -10,6 +16,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+
+
 
 }
 
