@@ -90,7 +90,7 @@ function generatePassword() {
       specialCharFunc();
     }
   }
-
+console.log(numericalsSelection);
 }
 
 // Get references to the #generate element
