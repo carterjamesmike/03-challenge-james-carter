@@ -1,5 +1,3 @@
-// Assignment code here
-
 //Password character arrays 
 const lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',]
 const upperCase = lowerCase.map(element => {
@@ -7,20 +5,28 @@ const upperCase = lowerCase.map(element => {
 });
 const numericals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',]
 const specialChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')',]
+
+ //Final array that will hold other arrays based off user choice
 const finalArr = [];
+
+//Final password variable to display for user
 var passwordToString;
 
+//Primary funciton to house and call on all other generating functions
 function generatePassword() {
+  ///Variables that store user choice for password length and character selections
   var passwordLength;
   var lowerCaseSelection;
   var upperCaseSelection;
   var numericalsSelection;
   var specialCharSelection;
+  //Array that will hold randomly generated password before being converted into a string without commas
   const finalPassword = [];
+  //Calls first user choice function
   passwordLengthFunc();
+  //Function to determine user preference in password length and call first of character selection functions
   function passwordLengthFunc() {
        passwordLength = prompt("How long would you like your password? Please type a number between 8 and 128");
-      console.log(passwordLength);
       if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
          alert("Please type a number between 8 and 128");
          passwordLengthFunc();
@@ -28,78 +34,67 @@ function generatePassword() {
         lowerCaseFunc();
       }     
   }
+  //Function that prompts and stores user choice for inclusion of lowercase characters and calls on next character selection function 
   function lowerCaseFunc() {
     var lowerCasePrompt = prompt("Would you like lowercase letters? Please type y or n")
     lowerCaseSelection = lowerCasePrompt.toUpperCase();
     if (lowerCaseSelection === "Y" || lowerCaseSelection === "YES") {
       lowerCaseSelection = true;
-      console.log("lower horray");
-      console.log(lowerCaseSelection);
       upperCaseFunc();
     } else if (lowerCaseSelection === "N" || lowerCaseSelection === "NO") {
       lowerCaseSelection = false;
-      console.log("lower dang");
-      console.log(lowerCaseSelection);
       upperCaseFunc();
     } else {
       alert("Please type 'Yes' or 'No'");
       lowerCaseFunc();
     }
   }
+  //Function that prompts and stores user choice for inclusion of uppercase characters and calls on next character selection function 
   function upperCaseFunc() {
     var upperCasePrompt = prompt("Would you like uppercase letters? Please type y or n")
     upperCaseSelection = upperCasePrompt.toUpperCase();
     if (upperCaseSelection === "Y" || upperCaseSelection === "YES") {
       upperCaseSelection = true;
-      console.log("Upper horray");
-      console.log(upperCaseSelection);
-      numericalsfunc();
+      numericalsFunc();
     } else if (upperCaseSelection === "N" || upperCaseSelection === "NO") {
       upperCaseSelection = false;
-      console.log("Upper dang");
-      console.log(upperCaseSelection);
-      numericalsfunc();
+      numericalsFunc();
     } else {
       alert("Please type 'Yes' or 'No'");
       upperCaseFunc();
     }
   }
-  function numericalsfunc() {
+  //Function that prompts and stores user choice for inclusion of numerical characters and calls on next character selection function 
+  function numericalsFunc() {
     var numericalsPrompt = prompt("Would you like numbers? Please type y or n")
     numericalsSelection = numericalsPrompt.toUpperCase();
     if (numericalsSelection === "Y" || numericalsSelection === "YES") {
       numericalsSelection = true;
-      console.log("numerical horray");
-      console.log(numericalsSelection);
-      specialCharfunc();
+      specialCharFunc();
     } else if (numericalsSelection === "N" || numericalsSelection === "NO") {
       numericalsSelection = false;
-      console.log("numerical dang");
-      console.log(numericalsSelection);
-      specialCharfunc();
+      specialCharFunc();
     } else {
       alert("Please type 'Yes' or 'No'");
       numericalsFunc();
     }
   }
-  function specialCharfunc() {
+  //Function that prompts and stores user choice for inclusion of special characters and calls on function to user selected character arrays
+  function specialCharFunc() {
     var specialCharPrompt = prompt("Would you like special characters? Please type y or n")
     specialCharSelection = specialCharPrompt.toUpperCase();
     if (specialCharSelection === "Y" || specialCharSelection === "YES") {
       specialCharSelection = true;
-      console.log("special horray");
-      console.log(specialCharSelection);
       joinArr();
     } else if (specialCharSelection === "N" || specialCharSelection === "NO") {
       specialCharSelection = false;
-      console.log("special dang");
-      console.log(specialCharSelection);
       joinArr();
     } else {
       alert("Please type 'Yes' or 'No'");
       specialCharFunc();
     }
   }
+  //Primary function that joins user selected arrays into joinArr array. Checks if any imput was included first, then call on other functions that check other user imputs
   function joinArr (){
     if (lowerCaseSelection === false && upperCaseSelection === false && numericalsSelection === false && specialCharSelection === false) {
       alert("How can we generate a password with no characters? Lets start over");
@@ -107,60 +102,51 @@ function generatePassword() {
     } else {
       lowerCaseCheck();
     }
+    //Function that first performs a check on whether or not to include lowercase characters and adds that array if true then calls on next check/add funciton
     function lowerCaseCheck () {
       if (lowerCaseSelection === true) {
         finalArr.push(...lowerCase);
-        console.log("lowerCase true");
         upperCaseCheck();
       } else {
-        console.log("lowerCase false");
         upperCaseCheck();
       } 
     }
+    //Function that first performs a check on whether or not to include uppercase characters and adds that array if true then calls on next check/add funciton    
     function upperCaseCheck () {
       if (upperCaseSelection === true) {
         finalArr.push(...upperCase);
-        console.log("upperCase true");
         numericalsCheck();
       } else {
-        console.log("upperCase false");
         numericalsCheck();
       }
     }
+    //Function that first performs a check on whether or not to include numerical characters and adds that array if true then calls on next check/add funciton
     function numericalsCheck () {
       if (numericalsSelection === true) {
         finalArr.push(...numericals);
-        console.log("numericals true");
         specialCharsCheck();
       } else {
-        console.log("numericals false");
         specialCharsCheck();
       }
     }
+    //Function that first performs a check on whether or not to include special characters and adds that array if true then calls function to randomly pick characters from finalArr array  
     function specialCharsCheck () {
       if (specialCharSelection === true) {
         finalArr.push(...specialChars);
-        console.log("specialChars true");
-        console.log(finalArr);
         createPassword();
       } else {
-        console.log("specialChars false");
-        console.log(finalArr);
         createPassword();
       }
     }
   }
-  function createPassword () {
-    
+  //Function that randomly picks characters from finalArr array to build password
+  function createPassword () {  
     for (var i = 0; i < passwordLength; i++) {
       finalPassword.push(finalArr[Math.floor((Math.random() * finalArr.length))]);
-    }
-    
+    }  
   }
-
+  //Assigns finalPassword array into variable passwordToString without spaces or commas
   passwordToString = finalPassword.join("");
-  console.log(`This is the password ${passwordToString}`);
-  
 }
 
 // Get references to the #generate element
