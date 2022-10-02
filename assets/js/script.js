@@ -7,11 +7,17 @@ const upperCase = lowerCase.map(element => {
 });
 const numericals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',]
 const specialChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')',]
+const final = [];
 
 function generatePassword() {
+  var passwordLength;
+  var lowerCaseSelection;
+  var upperCaseSelection;
+  var numericalsSelection;
+  var specialCharSelection;
   passwordLengthFunc();
   function passwordLengthFunc() {
-      var passwordLength = prompt("How long would you like your password? Please type a number between 8 and 128");
+       passwordLength = prompt("How long would you like your password? Please type a number between 8 and 128");
       console.log(passwordLength);
       if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
          alert("Please type a number between 8 and 128");
@@ -22,7 +28,7 @@ function generatePassword() {
   }
   function lowerCaseFunc() {
     var lowerCasePrompt = prompt("Would you like lowercase letters? Please type y or n")
-    var lowerCaseSelection = lowerCasePrompt.toUpperCase();
+    lowerCaseSelection = lowerCasePrompt.toUpperCase();
     if (lowerCaseSelection === "Y" || lowerCaseSelection === "YES") {
       lowerCaseSelection = true;
       console.log("lower horray");
@@ -40,7 +46,7 @@ function generatePassword() {
   }
   function upperCaseFunc() {
     var upperCasePrompt = prompt("Would you like uppercase letters? Please type y or n")
-    var upperCaseSelection = upperCasePrompt.toUpperCase();
+    upperCaseSelection = upperCasePrompt.toUpperCase();
     if (upperCaseSelection === "Y" || upperCaseSelection === "YES") {
       upperCaseSelection = true;
       console.log("Upper horray");
@@ -58,7 +64,7 @@ function generatePassword() {
   }
   function numericalsfunc() {
     var numericalsPrompt = prompt("Would you like numbers? Please type y or n")
-    var numericalsSelection = numericalsPrompt.toUpperCase();
+    numericalsSelection = numericalsPrompt.toUpperCase();
     if (numericalsSelection === "Y" || numericalsSelection === "YES") {
       numericalsSelection = true;
       console.log("numerical horray");
@@ -76,21 +82,70 @@ function generatePassword() {
   }
   function specialCharfunc() {
     var specialCharPrompt = prompt("Would you like special characters? Please type y or n")
-    var specialCharSelection = specialCharPrompt.toUpperCase();
+    specialCharSelection = specialCharPrompt.toUpperCase();
     if (specialCharSelection === "Y" || specialCharSelection === "YES") {
       specialCharSelection = true;
       console.log("special horray");
       console.log(specialCharSelection);
+      joinArr();
     } else if (specialCharSelection === "N" || specialCharSelection === "NO") {
       specialCharSelection = false;
       console.log("special dang");
       console.log(specialCharSelection);
+      joinArr();
     } else {
       alert("Please type 'Yes' or 'No'");
       specialCharFunc();
     }
   }
-console.log(numericalsSelection);
+  function joinArr (){
+    if (lowerCaseSelection === false && upperCaseSelection === false && numericalsSelection === false && specialCharSelection === false) {
+      alert("How can we generate a password with no characters? Lets start over");
+      generatePassword();
+    } else {
+      lowerCaseCheck();
+    }
+    function lowerCaseCheck () {
+      if (lowerCaseSelection === true) {
+        final.push(...lowerCase);
+        console.log("lowerCase true");
+        upperCaseCheck();
+    } else {
+        console.log("lowerCase false");
+        upperCaseCheck();
+    }
+    }
+    function upperCaseCheck () {
+      if (upperCaseSelection === true) {
+        final.push(...upperCase);
+        console.log("upperCase true");
+        numericalsCheck();
+    } else {
+        console.log("upperCase false");
+        numericalsCheck();
+    }
+    }
+    function numericalsCheck () {
+      if (numericalsSelection === true) {
+        final.push(...numericals);
+        console.log("numericals true");
+        specialCharsCheck();
+    } else {
+        console.log("numericals false");
+        specialCharsCheck();
+    }
+    }
+    function specialCharsCheck () {
+      if (specialCharSelection === true) {
+        final.push(...specialChars);
+        console.log("specialChars true");
+        console.log(final);
+    } else {
+        console.log("specialChars false");
+        console.log(final);
+    }
+    }
+  }
 }
 
 // Get references to the #generate element
