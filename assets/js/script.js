@@ -7,7 +7,8 @@ const upperCase = lowerCase.map(element => {
 });
 const numericals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',]
 const specialChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')',]
-const final = [];
+const finalArr = [];
+var passwordToString;
 
 function generatePassword() {
   var passwordLength;
@@ -15,6 +16,7 @@ function generatePassword() {
   var upperCaseSelection;
   var numericalsSelection;
   var specialCharSelection;
+  const finalPassword = [];
   passwordLengthFunc();
   function passwordLengthFunc() {
        passwordLength = prompt("How long would you like your password? Please type a number between 8 and 128");
@@ -107,45 +109,58 @@ function generatePassword() {
     }
     function lowerCaseCheck () {
       if (lowerCaseSelection === true) {
-        final.push(...lowerCase);
+        finalArr.push(...lowerCase);
         console.log("lowerCase true");
         upperCaseCheck();
-    } else {
+      } else {
         console.log("lowerCase false");
         upperCaseCheck();
-    }
+      } 
     }
     function upperCaseCheck () {
       if (upperCaseSelection === true) {
-        final.push(...upperCase);
+        finalArr.push(...upperCase);
         console.log("upperCase true");
         numericalsCheck();
-    } else {
+      } else {
         console.log("upperCase false");
         numericalsCheck();
-    }
+      }
     }
     function numericalsCheck () {
       if (numericalsSelection === true) {
-        final.push(...numericals);
+        finalArr.push(...numericals);
         console.log("numericals true");
         specialCharsCheck();
-    } else {
+      } else {
         console.log("numericals false");
         specialCharsCheck();
-    }
+      }
     }
     function specialCharsCheck () {
       if (specialCharSelection === true) {
-        final.push(...specialChars);
+        finalArr.push(...specialChars);
         console.log("specialChars true");
-        console.log(final);
-    } else {
+        console.log(finalArr);
+        createPassword();
+      } else {
         console.log("specialChars false");
-        console.log(final);
-    }
+        console.log(finalArrArr);
+        createPassword();
+      }
     }
   }
+  function createPassword () {
+    
+    for (var i = 0; i < passwordLength; i++) {
+      finalPassword.push(finalArr[Math.floor((Math.random() * finalArr.length))]);
+    }
+    
+  }
+
+  passwordToString = finalPassword.join("");
+  console.log(`This is the password ${passwordToString}`);
+  
 }
 
 // Get references to the #generate element
@@ -153,10 +168,10 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = passwordToString;
 
 
 
