@@ -145,7 +145,7 @@ function generatePassword() {
         createPassword();
       } else {
         console.log("specialChars false");
-        console.log(finalArrArr);
+        console.log(finalArr);
         createPassword();
       }
     }
