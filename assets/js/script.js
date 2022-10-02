@@ -31,6 +31,7 @@ function generatePassword() {
          alert("Please type a number between 8 and 128");
          passwordLengthFunc();
       } else {
+        li1.textContent = `Password length: ${passwordLength}`;
         lowerCaseFunc();
       }     
   }
@@ -40,9 +41,11 @@ function generatePassword() {
     lowerCaseSelection = lowerCasePrompt.toUpperCase();
     if (lowerCaseSelection === "Y" || lowerCaseSelection === "YES") {
       lowerCaseSelection = true;
+      li2.textContent = "Lowercase letters: ✅";
       upperCaseFunc();
     } else if (lowerCaseSelection === "N" || lowerCaseSelection === "NO") {
       lowerCaseSelection = false;
+      li2.textContent = "Lowercase letters: ❌";
       upperCaseFunc();
     } else {
       alert("Please type 'Yes' or 'No'");
@@ -55,9 +58,11 @@ function generatePassword() {
     upperCaseSelection = upperCasePrompt.toUpperCase();
     if (upperCaseSelection === "Y" || upperCaseSelection === "YES") {
       upperCaseSelection = true;
+      li3.textContent = "Uppercase letters: ✅";
       numericalsFunc();
     } else if (upperCaseSelection === "N" || upperCaseSelection === "NO") {
       upperCaseSelection = false;
+      li3.textContent = "Uppercase letters: ❌";
       numericalsFunc();
     } else {
       alert("Please type 'Yes' or 'No'");
@@ -70,9 +75,11 @@ function generatePassword() {
     numericalsSelection = numericalsPrompt.toUpperCase();
     if (numericalsSelection === "Y" || numericalsSelection === "YES") {
       numericalsSelection = true;
+      li4.textContent = "Numbers: ✅";
       specialCharFunc();
     } else if (numericalsSelection === "N" || numericalsSelection === "NO") {
       numericalsSelection = false;
+      li4.textContent = "Numbers: ❌";
       specialCharFunc();
     } else {
       alert("Please type 'Yes' or 'No'");
@@ -85,9 +92,11 @@ function generatePassword() {
     specialCharSelection = specialCharPrompt.toUpperCase();
     if (specialCharSelection === "Y" || specialCharSelection === "YES") {
       specialCharSelection = true;
+      li5.textContent = "Special Characters: ✅";
       joinArr();
     } else if (specialCharSelection === "N" || specialCharSelection === "NO") {
       specialCharSelection = false;
+      li5.textContent = "Special Characters: ❌";
       joinArr();
     } else {
       alert("Please type 'Yes' or 'No'");
